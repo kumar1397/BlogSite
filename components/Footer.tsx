@@ -11,7 +11,7 @@ const Footer = () => {
     <footer className="py-16 px-6 border-t border-border/60">
       <div className="container mx-auto max-w-5xl text-center space-y-6">
         <p className="font-serif text-lg text-foreground italic">
-          "Stay curious, keep building."
+          &quot;Stay curious, keep building.&quot;
         </p>
         <div className="flex justify-center gap-5">
           {socialLinks.map(({ icon: Icon, href, label }) => (
