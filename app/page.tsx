@@ -1,21 +1,10 @@
-import Header from "@/components/Header";
-import HeroSection from "@/app/heroPage/page";
-import ProjectSection from "@/app/projects/page";
-import BlogSection from "@/app/blogs/page";
-import Footer from "@/components/Footer";
+import Home from "@/app/home/page";
 
-const Index = () => {
+export default function Index() {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-      <main>
-        <HeroSection />
-        <ProjectSection />
-        <BlogSection />
-      </main>
-      <Footer />
+      <Home />
     </div>
   );
 };
 
-export default Index;

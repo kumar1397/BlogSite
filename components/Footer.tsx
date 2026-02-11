@@ -27,9 +27,7 @@ const Footer = () => {
             </a>
           ))}
         </div>
-        <p className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Alex Chen. All rights reserved.
-        </p>
+       
       </div>
     </footer>
   );

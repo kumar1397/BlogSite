@@ -1,19 +1,22 @@
 import { ArrowDown } from "lucide-react";
 import Image from "next/image";
-const HeroSection = () => {
+export default function HeroSection() {
   return (
     <section id="about" className="pt-32 pb-24 px-6">
       <div className="container mx-auto max-w-5xl">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 animate-fade-in-up">
             <p className="text-sm font-semibold tracking-widest uppercase text-primary">
-              Developer & Writer
+              Finance Enthusiat & Writer
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl leading-tight text-foreground">
-              Hello, I'm Alex Chen
+              Hello, I&apos;m ABC XYZ
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
-              I build thoughtful software and write about technology, design, and the creative process. Currently exploring the intersection of developer tools and user experience.
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam
+              impedit aliquid fugit voluptatum id veniam adipisci, facere
+              aspernatur! Aliquid perferendis voluptas quos quo dolores, ipsa
+              neque laboriosam culpa rerum eligendi.
             </p>
             <div className="flex gap-3 pt-2">
               <a
@@ -30,7 +33,10 @@ const HeroSection = () => {
               </a>
             </div>
           </div>
-          <div className="flex justify-center md:justify-end animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+          <div
+            className="flex justify-center md:justify-end animate-fade-in-up"
+            style={{ animationDelay: "0.2s" }}
+          >
             <div className="relative w-72 h-72 lg:w-80 lg:h-80">
               <div className="absolute inset-0 bg-primary/10 rounded-3xl rotate-6" />
               <Image
@@ -44,13 +50,14 @@ const HeroSection = () => {
           </div>
         </div>
         <div className="flex justify-center pt-16">
-          <a href="#projects" className="text-muted-foreground hover:text-primary transition-colors animate-bounce">
+          <a
+            href="#projects"
+            className="text-muted-foreground hover:text-primary transition-colors animate-bounce"
+          >
             <ArrowDown size={20} />
           </a>
         </div>
       </div>
     </section>
   );
-};
-
-export default HeroSection;
+}
