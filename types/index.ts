@@ -1,20 +1,38 @@
+export type PostCategory = "blogs" | "finance" | "graphic";
+
 export interface Post {
-  id: string;
+  _id: string;
   title: string;
   slug: string;
-  excerpt: string;
-  content: string;
-  coverImage: string;
-  tags: string[];
-  publishedAt: string;
+  description?: string;
+  coverImage?: string;
+  category: PostCategory;
+  link?: string;
+  tags?: string[];    
+  content: string[];
+  publishedAt?: string;
 }
 
 export interface Project {
-  id: string;
+  _id: string;
+  slug: string;
   title: string;
-  description: string;
-  techStack: string[];
-  image: string;
-  link: string;
-  type: "web" | "app" | "code" | "design";
+  description?: string;
+  coverImage?: string;
+  tags?: string[];
+  link?: string;
+  publishedAt?: string;
+  category: "finance" | "graphic";
+}
+
+export interface Blogs {
+  _id: string;
+  title: string;
+  slug: string;
+  description?: string;
+  coverImage?: string;
+  tags?: string[];
+  content: string[];
+  publishedAt?: string;
+  category: "blogs";
 }

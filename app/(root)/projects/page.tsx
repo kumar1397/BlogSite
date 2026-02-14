@@ -1,9 +1,13 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { projects } from "@/data/mock";
 import ProjectCard from "@/components/ProjectCard";
-
-export default function AllProjects() {
+import { sanityClient } from "@/lib/sanity";
+import { postsQuery } from "@/lib/queries";
+import { Project, Post } from "@/types";
+export const revalidate = 60; 
+export default async function AllProjects() {
+  const posts = await sanityClient.fetch(postsQuery);
+  const financePosts = posts.filter((post: Post) => post.category === "finance");
   return (
     <div className="min-h-screen bg-background">
       <main className="py-24 px-6">
@@ -24,8 +28,8 @@ export default function AllProjects() {
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+            {financePosts.map((project: Project) => (
+              <ProjectCard key={project._id} project={project} />
             ))}
           </div>
         </div>

@@ -3,7 +3,7 @@ import type { Project } from "@/types";
 import Image from "next/image";
 import { urlFor } from "@/lib/image";
 
-export default function ProjectCard({ project }: { project: Project }) {
+export default function PortfolioCard({ project }: { project: Project }) {
   return (
     <a
       href={project.link}

@@ -5,7 +5,6 @@ import Image from "next/image";
 export default function About() {
   return (
     <div className="bg-background min-h-screen pt-24">
-      {/* ↑ added pt-24 to push content below header */}
 
       <div className="container mx-auto max-w-4xl px-6 py-16 space-y-20">
         <Link
