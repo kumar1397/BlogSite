@@ -19,11 +19,11 @@ export default function BlogCard({ post }: { post: Post }) {
         <div className="aspect-video overflow-hidden bg-secondary">
           {post.coverImage && (
             <Image
-              src={urlFor(post.coverImage).width(480).height(270).url()}
+              src={urlFor(post.coverImage).width(800).height(500).url()}
               alt={post.title}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              width={480}
-              height={270}
+              width={800}
+              height={500}
             />
           )}
         </div>

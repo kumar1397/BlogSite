@@ -25,9 +25,17 @@ export default async function ProjectsSection() {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {visible.map((project: Project) => (
-            <ProjectCard key={project._id} project={project} />
-          ))}
+          {financePosts.length === 0 ? (
+            <div className="col-span-full text-center py-8">
+              <p className="text-muted-foreground">
+                No projects yet. Check back soon for new projects.
+              </p>
+            </div>
+          ) : (
+            visible.map((project: Project) => (
+              <ProjectCard key={project._id} project={project} />
+            ))
+          )}
         </div>
 
         {financePosts.length > INITIAL_COUNT && (

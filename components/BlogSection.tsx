@@ -18,17 +18,25 @@ export default async function BlogSection() {
     <section id="blog" className="py-24 px-6 bg-secondary/40"> 
       <div className="container mx-auto max-w-5xl">
         <div className="text-center mb-14">
-          <h2 className="text-3xl sm:text-4xl text-foreground mb-3">Blog</h2>
+          <h2 className="text-3xl sm:text-4xl text-foreground mb-3">Blogs</h2>
           <p className="text-muted-foreground max-w-lg mx-auto">
             Thoughts on building software, design thinking, and personal growth.
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {visible.map((post: Blogs) => (
-            <BlogCard key={post._id} post={post} />
-          ))}
+          {blogPosts.length === 0 ? (
+            <div className="col-span-full text-center py-8">
+              <p className="text-muted-foreground">
+                No blogs has been posted for now.
+              </p>
+            </div>
+          ) : (
+            visible.map((post: Blogs) => (
+              <BlogCard key={post._id} post={post} />
+            ))
+          )}
         </div>
-        {posts.length > INITIAL_COUNT && (
+        {blogPosts.length > INITIAL_COUNT && (
           <div className="text-center mt-10">
             <Button variant="outline" asChild className="gap-2">
               <Link href="/blogs">
