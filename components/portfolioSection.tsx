@@ -10,8 +10,10 @@ const INITIAL_COUNT = 3;
 
 export default async function PortfolioSection() {
   const posts = await sanityClient.fetch(postsQuery);
-  const graphicPosts = posts.filter((post: Post) => post.category === "graphic");
-  const visible = graphicPosts  .slice(0, INITIAL_COUNT);
+  const graphicPosts = posts.filter(
+    (post: Post) => post.category === "graphic",
+  );
+  const visible = graphicPosts.slice(0, INITIAL_COUNT);
   return (
     <section id="projects" className="py-24 px-6">
       <div className="container mx-auto max-w-5xl">
@@ -26,9 +28,9 @@ export default async function PortfolioSection() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {graphicPosts.length === 0 ? (
-            <div className="col-span-full text-center py-8">
-              <p className="text-muted-foreground">
-                No portfolios yet. Check back soon for new work.
+            <div className="col-span-full flex flex-col items-center justify-center py-14 px-6 border border-dashed rounded-2xl bg-muted/30 text-center">
+              <p className="text-base font-medium text-foreground">
+                No portfolios yet
               </p>
             </div>
           ) : (

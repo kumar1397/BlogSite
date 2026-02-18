@@ -10,25 +10,30 @@ const INITIAL_COUNT = 3;
 
 export default async function ProjectsSection() {
   const posts = await sanityClient.fetch(postsQuery);
-  const financePosts = posts.filter((post: Post) => post.category === "finance");
+  const financePosts = posts.filter(
+    (post: Post) => post.category === "finance",
+  );
   const visible = financePosts.slice(0, INITIAL_COUNT);
   return (
     <section id="projects" className="py-24 px-6">
       <div className="container mx-auto max-w-5xl">
         <div className="text-center mb-14">
-          <h2 className="text-3xl sm:text-4xl text-foreground mb-3">
+          <h2 className="text-3xl sm:text-4xl font-semibold text-foreground mb-3">
             Projects
           </h2>
-          <p className="text-muted-foreground max-w-lg mx-auto">
+
+          {/* Section description → softer & smaller */}
+          <p className="text-sm sm:text-base text-muted-foreground/80 max-w-lg mx-auto">
             A selection of things I&apos;ve built, explored, and shipped.
           </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {financePosts.length === 0 ? (
-            <div className="col-span-full text-center py-8">
-              <p className="text-muted-foreground">
-                No projects yet. Check back soon for new projects.
+            /* Empty state → styled container */
+            <div className="col-span-full flex flex-col items-center justify-center py-14 px-6 border border-dashed rounded-2xl bg-muted/30 text-center">
+              <p className="text-base font-medium text-foreground">
+                No projects yet
               </p>
             </div>
           ) : (

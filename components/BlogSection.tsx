@@ -25,10 +25,11 @@ export default async function BlogSection() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogPosts.length === 0 ? (
-            <div className="col-span-full text-center py-8">
-              <p className="text-muted-foreground">
-                No blogs has been posted for now.
+            <div className="col-span-full flex flex-col items-center justify-center py-14 px-6 border border-dashed rounded-2xl bg-muted/30 text-center">
+              <p className="text-base font-medium text-foreground">
+                No blogs yet
               </p>
+
             </div>
           ) : (
             visible.map((post: Blogs) => (
