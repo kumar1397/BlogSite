@@ -4,10 +4,21 @@ import ProjectCard from "@/components/ProjectCard";
 import { sanityClient } from "@/lib/sanity";
 import { postsQuery } from "@/lib/queries";
 import { Project, Post } from "@/types";
-export const revalidate = 60; 
+export const revalidate = 60;
 export default async function AllProjects() {
-  const posts = await sanityClient.fetch(postsQuery);
-  const financePosts = posts.filter((post: Post) => post.category === "finance");
+  const posts = await sanityClient.fetch(
+    postsQuery,
+    {},
+    {
+      next: {
+        revalidate: 60,
+        tags: ["post"],
+      },
+    },
+  );
+  const financePosts = posts.filter(
+    (post: Post) => post.category === "finance",
+  );
   return (
     <div className="min-h-screen bg-background">
       <main className="py-24 px-6">
@@ -24,7 +35,8 @@ export default async function AllProjects() {
               All Projects
             </h1>
             <p className="text-muted-foreground max-w-lg">
-              A complete collection of things I&apos;ve built, explored, and shipped.
+              A complete collection of things I&apos;ve built, explored, and
+              shipped.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -36,5 +48,4 @@ export default async function AllProjects() {
       </main>
     </div>
   );
-};
-
+}

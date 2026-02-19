@@ -9,7 +9,16 @@ export const revalidate = 60;
 const INITIAL_COUNT = 3;
 
 export default async function PortfolioSection() {
-  const posts = await sanityClient.fetch(postsQuery);
+  const posts = await sanityClient.fetch(
+    postsQuery,
+    {},
+    {
+      next: {
+        revalidate: 60,
+        tags: ["post"],
+      },
+    },
+  );
   const graphicPosts = posts.filter(
     (post: Post) => post.category === "graphic",
   );

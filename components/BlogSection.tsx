@@ -10,7 +10,16 @@ export const revalidate = 60;
 const INITIAL_COUNT = 3;
 
 export default async function BlogSection() {
-  const posts = await sanityClient.fetch(postsQuery);
+  const posts = await sanityClient.fetch(
+    postsQuery,
+    {},
+    {
+      next: {
+        revalidate: 60,
+        tags: ["post"],
+      },
+    },
+  );
   const blogPosts = posts.filter((post: Post) => post.category === "blogs");
   const visible = blogPosts.slice(0, INITIAL_COUNT);
 

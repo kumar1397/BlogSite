@@ -6,15 +6,22 @@ import { sanityClient } from "@/lib/sanity";
 import { urlFor } from "@/lib/image";
 import { PortableText } from "@portabletext/react";
 import { postBySlugQuery } from "@/lib/queries";
-export const revalidate = 60; 
+export const revalidate = 60;
 export default async function BlogPost({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const post = await sanityClient.fetch(postBySlugQuery, {
-    slug: (await params).slug,
-  });
+  const post = await sanityClient.fetch(
+    postBySlugQuery,
+    { slug: (await params).slug },
+    {
+      next: {
+        revalidate: 60,
+        tags: ["post"], 
+      },
+    },
+  );
   if (!post) return notFound();
 
   const formattedDate = post.publishedAt

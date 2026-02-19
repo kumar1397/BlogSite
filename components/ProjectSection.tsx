@@ -5,11 +5,20 @@ import Link from "next/link";
 import { sanityClient } from "@/lib/sanity";
 import { postsQuery } from "@/lib/queries";
 import { Project, Post } from "@/types";
-export const revalidate = 60; 
+export const revalidate = 60;
 const INITIAL_COUNT = 3;
 
 export default async function ProjectsSection() {
-  const posts = await sanityClient.fetch(postsQuery);
+  const posts = await sanityClient.fetch(
+    postsQuery,
+    {},
+    {
+      next: {
+        revalidate: 60,
+        tags: ["post"],
+      },
+    },
+  );
   const financePosts = posts.filter(
     (post: Post) => post.category === "finance",
   );
