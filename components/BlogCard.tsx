@@ -3,7 +3,7 @@ import Image from "next/image";
 import { BookOpen, Calendar } from "lucide-react";
 import type { Post } from "@/types";
 import { urlFor } from "@/lib/image";
-
+export const revalidate = 60; 
 export default function BlogCard({ post }: { post: Post }) {
    const formattedDate = post.publishedAt
     ? new Date(post.publishedAt).toLocaleDateString("en-US", {

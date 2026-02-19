@@ -2,7 +2,7 @@ import { ExternalLink } from "lucide-react";
 import type { Project } from "@/types";
 import Image from "next/image";
 import { urlFor } from "@/lib/image";
-
+export const revalidate = 60; 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
     <a

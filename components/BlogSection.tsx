@@ -6,7 +6,7 @@ import Link from "next/link";
 import { sanityClient } from "@/lib/sanity";
 import { postsQuery } from "@/lib/queries";
 import { Blogs, Post } from "@/types";
-
+export const revalidate = 60; 
 const INITIAL_COUNT = 3;
 
 export default async function BlogSection() {
