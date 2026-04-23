@@ -3,16 +3,16 @@ import HeroSection from "@/app/heroPage/page";
 import ProjectSection from "@/components/ProjectSection";
 import BlogSection from "@/components/BlogSection";
 import Footer from "@/components/Footer";
-import PortfolioSection from "@/components/portfolioSection";
+import { QuickLinks } from "@/components/QuickLinks";
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
       <main>
         <HeroSection />
+        <QuickLinks/>
         <BlogSection />
         <ProjectSection />
-        <PortfolioSection />
       </main>
       <Footer />
     </div>

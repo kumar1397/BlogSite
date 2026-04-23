@@ -1,3 +1,4 @@
+
 const navLinks = [
     { label: "About", href: "/about" },
     { label: "Projects", href: "/projects" },
@@ -5,27 +6,29 @@ const navLinks = [
     { label: "Portfolio", href: "/portfolio" },
 ];
 
-const Header = () => {
+export default function Header() {
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
-            <div className="container mx-auto flex items-center justify-between h-16 px-6">
-                <a href="/about" className="font-serif text-xl text-foreground hover:text-primary transition-colors">
-                    ABC XYC
+        <header className="sticky top-0 z-40 border-b-2 border-border bg-background/95 backdrop-blur">
+            <div className="mx-auto flex max-w-6xl items-center gap-2 px-4 py-3 sm:gap-6">
+                <a
+                    href="/"
+                    className="flex h-9 w-9 items-center justify-center rounded border-2 border-border bg-card font-mono text-lg font-bold"
+                    aria-label="Home"
+                >
+                    ◉
                 </a>
-                <nav className="hidden sm:flex items-center gap-8">
+                <nav className="flex flex-wrap items-center gap-1 sm:gap-4 font-display text-sm font-medium">
                     {navLinks.map((link) => (
                         <a
                             key={link.href}
                             href={link.href}
-                            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                            className="rounded px-2 py-1 hover:text-accent transition-colors"
                         >
                             {link.label}
                         </a>
                     ))}
                 </nav>
-            </div>
-        </header>
+            </div >
+        </header >
     );
 };
-
-export default Header;

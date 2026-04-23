@@ -1,4 +1,4 @@
-export type PostCategory = "blogs" | "finance" | "graphic";
+export type PostCategory = "blogs" | "finance";
 
 export interface Post {
   _id: string;
@@ -22,7 +22,7 @@ export interface Project {
   tags?: string[];
   link?: string;
   publishedAt?: string;
-  category: "finance" | "graphic";
+  category: "finance";
 }
 
 export interface Blogs {
