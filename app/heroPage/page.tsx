@@ -18,7 +18,7 @@ export default async function HeroSection() {
   );
   console.log(profile)
   return (
-    <section className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 px-4 pt-32 pb-24 md:grid-cols-2 md:py-24">
+    <section className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 px-4 pt-32 pb-24 md:grid-cols-2 md:py-24 bg-[radial-gradient(oklch(0.18_0.015_60_/_0.06)_1px,transparent_1px)] [background-size:4px_4px]">
 
       {/* Left: Text */}
       <div className="space-y-6">
@@ -37,14 +37,14 @@ export default async function HeroSection() {
         <div className="flex flex-wrap gap-3 pt-2">
           <a
             href="#projects"
-            className="inline-flex items-center rounded border-2 border-border bg-foreground px-5 py-2.5 font-medium text-background shadow-[4px_4px_0_0_var(--color-border)] transition-transform hover:-translate-y-0.5"
+            className="inline-flex items-center border-2 border-border bg-foreground px-5 py-2.5 font-medium text-background shadow-[4px_4px_0_0_var(--color-border)] transition-transform hover:-translate-y-0.5"
           >
             View Projects
           </a>
 
           <a
             href="#blog"
-            className="inline-flex items-center rounded border-2 border-border bg-card px-5 py-2.5 font-medium shadow-[4px_4px_0_0_var(--color-border)] transition-transform hover:-translate-y-0.5 hover:bg-accent hover:text-accent-foreground"
+            className="inline-flex items-center border-2 border-border bg-card px-5 py-2.5 font-medium shadow-[4px_4px_0_0_var(--color-border)] transition-transform hover:-translate-y-0.5 hover:bg-accent hover:text-accent-foreground"
           >
             Read Blog
           </a>
@@ -53,15 +53,13 @@ export default async function HeroSection() {
 
       {/* Right: Image */}
       <div className="relative flex justify-center md:justify-end">
-        <div className="absolute -inset-4 -z-10 halftone rounded-lg" />
-
         {profile?.imageUrl ? (
           <Image
             src={profile.imageUrl}
             alt={profile.imageAlt || profile.name}
             width={320}
             height={320}
-            className="relative mx-auto w-full max-w-sm object-cover rounded-lg border-2 border-border shadow-[4px_4px_0_0_var(--color-border)]"
+            className="relative mx-auto w-full max-w-sm object-cover border-2 border-border shadow-[4px_4px_0_0_var(--color-border)]"
           />
         ) : (
           <div className="w-[320px] h-[320px] flex items-center justify-center border-2 border-border rounded-lg">

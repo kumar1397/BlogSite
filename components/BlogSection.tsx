@@ -1,36 +1,28 @@
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import { sanityClient } from "@/lib/sanity";
-import { postsQuery } from "@/lib/queries";
-import { Blogs, Post } from "@/types";
-import { urlFor } from "@/lib/image";
+import {ArrowRight} from 'lucide-react'
+import Link from 'next/link'
+import {sanityClient} from '@/lib/sanity'
+import {postsQuery} from '@/lib/queries'
+import {Blog, Post} from '@/types'
+import {urlFor} from '@/lib/image'
 
-export const revalidate = 60;
-const INITIAL_COUNT = 4;
+export const revalidate = 60
+const INITIAL_COUNT = 4
 
 export default async function BlogSection() {
- 
-  const posts = await sanityClient.fetch(
+  const posts: Post[] = await sanityClient.fetch(
     postsQuery,
     {},
-    {
-      next: {
-        revalidate: 60,
-        tags: ["post"],
-      },
-    },
-  );
-  
-  const blogPosts = posts.filter((post: Post) => post.category === "blogs");
-  const visible = blogPosts.slice(0, INITIAL_COUNT);
+    {next: {revalidate: 60, tags: ['post']}},
+  )
+
+  const blogPosts = posts.filter((post): post is Blog => post.category === 'blogs')
+  const visible = blogPosts.slice(0, INITIAL_COUNT)
+
   return (
     <section id="blog" className="mx-auto max-w-6xl px-4 py-12">
       <div className="mb-6">
         <h2 className="font-display text-3xl font-bold">From the blog</h2>
-        <Link
-          href="/blogs"
-          className="text-sm underline underline-offset-4 hover:text-accent"
-        >
+        <Link href="/blogs" className="text-sm underline underline-offset-4 hover:text-accent">
           View all blog posts
         </Link>
       </div>
@@ -41,10 +33,10 @@ export default async function BlogSection() {
             <p className="font-mono text-sm text-foreground/60">No blogs yet</p>
           </div>
         ) : (
-          visible.map((post: Blogs, i: number) => (
+          visible.map((post) => (
             <Link href={`/blogs/${post.slug}`} key={post._id}>
-              <div className="window h-full">
-                <div className="halftone aspect-[4/3] overflow-hidden border-b-2 border-border bg-muted">
+              <div className="window h-full rounded-none">
+                <div className="aspect-[4/3] overflow-hidden border-b-2 border-border bg-muted">
                   {post.coverImage && (
                     <img
                       src={urlFor(post.coverImage).width(800).height(500).url()}
@@ -55,17 +47,15 @@ export default async function BlogSection() {
                   )}
                 </div>
                 <div className="p-4">
-                  <h3 className="font-display text-base font-bold leading-snug">
-                    {post.title}
-                  </h3>
+                  <h3 className="font-display text-base font-bold leading-snug">{post.title}</h3>
                   <p className="mt-2 font-mono text-xs text-foreground/60">
                     {post.publishedAt
-                      ? new Date(post.publishedAt).toLocaleDateString("en-GB", {
-                          day: "2-digit",
-                          month: "2-digit",
-                          year: "numeric",
+                      ? new Date(post.publishedAt).toLocaleDateString('en-GB', {
+                          day: '2-digit',
+                          month: '2-digit',
+                          year: 'numeric',
                         })
-                      : "Date unavailable"}
+                      : 'Date unavailable'}
                   </p>
                 </div>
               </div>
@@ -86,5 +76,5 @@ export default async function BlogSection() {
         </div>
       )}
     </section>
-  );
+  )
 }

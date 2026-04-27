@@ -21,7 +21,7 @@ export default async function AllBlogs() {
 
   return (
     <div className="min-h-screen">
-      <main className="mx-auto max-w-3xl px-4 py-16">
+      <main className="mx-auto max-w-3xl px-4 py-16">   
         <Link
           href="/"
           className="inline-flex items-center gap-2 font-mono text-xs text-foreground/60 hover:text-accent transition-colors mb-10"

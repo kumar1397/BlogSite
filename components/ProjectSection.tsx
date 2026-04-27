@@ -1,35 +1,28 @@
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import { sanityClient } from "@/lib/sanity";
-import { postsQuery } from "@/lib/queries";
-import { Project, Post } from "@/types";
-import { urlFor } from "@/lib/image";
+import {ArrowRight} from 'lucide-react'
+import Link from 'next/link'
+import {sanityClient} from '@/lib/sanity'
+import {postsQuery} from '@/lib/queries'
+import {Post, Project} from '@/types'
+import {urlFor} from '@/lib/image'
 
-export const revalidate = 60;
-const INITIAL_COUNT = 4;
+export const revalidate = 60
+const INITIAL_COUNT = 4
 
 export default async function ProjectsSection() {
-  const posts = await sanityClient.fetch(
+  const posts: Post[] = await sanityClient.fetch(
     postsQuery,
     {},
-    {
-      next: {
-        revalidate: 60,
-        tags: ["post"],
-      },
-    },
-  );
-  const financePosts = posts.filter((post: Post) => post.category === "finance");
-  const visible = financePosts.slice(0, INITIAL_COUNT);
+    {next: {revalidate: 60, tags: ['post']}},
+  )
+
+  const financePosts = posts.filter((post): post is Project => post.category === 'finance')
+  const visible = financePosts.slice(0, INITIAL_COUNT)
 
   return (
     <section id="projects" className="mx-auto max-w-6xl px-4 py-12">
       <div className="mb-6 flex items-end justify-between">
         <h2 className="font-display text-3xl font-bold">Projects</h2>
-        <Link
-          href="/projects"
-          className="text-sm underline underline-offset-4 hover:text-accent"
-        >
+        <Link href="/projects" className="text-sm underline underline-offset-4 hover:text-accent">
           View all →
         </Link>
       </div>
@@ -40,16 +33,16 @@ export default async function ProjectsSection() {
             <p className="font-mono text-sm text-foreground/60">No projects yet</p>
           </div>
         ) : (
-          visible.map((project: Project) => (
+          visible.map((project) => (
             <Link href={`/projects/${project.slug}`} key={project._id}>
-              <div className="window h-full">
+              <div className="window h-full rounded-none">
                 <div className="halftone aspect-[16/9] overflow-hidden border-b-2 border-border bg-muted">
                   {project.coverImage && (
                     <img
                       src={urlFor(project.coverImage).width(800).height(500).url()}
                       alt={project.title}
                       loading="lazy"
-                      className="h-full w-full object-cover mix-blend-multiply contrast-110 saturate-50"
+                      className="h-full w-full object-cover contrast-110 saturate-50"
                     />
                   )}
                 </div>
@@ -80,5 +73,5 @@ export default async function ProjectsSection() {
         </div>
       )}
     </section>
-  );
+  )
 }
